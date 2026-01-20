@@ -1,4 +1,34 @@
 # JSON Web Token
+![JWT Logo](https://jwt.io/img/logo-asset.svg)
+
+---
+
+- [JSON Web Token](#json-web-token)
+  - [Introdução](#introdução)
+  - [O que é um JWT?](#o-que-é-um-jwt)
+  - [Quando usar JWT?](#quando-usar-jwt)
+    - [Autorização (o uso mais comum)](#autorização-o-uso-mais-comum)
+    - [Troca segura de informações](#troca-segura-de-informações)
+  - [Exemplo com Código: Gerar um JWT em Python](#exemplo-com-código-gerar-um-jwt-em-python)
+  - [Desmontando o JWT](#desmontando-o-jwt)
+    - [O Header](#o-header)
+    - [O Payload](#o-payload)
+    - [A Secret Key](#a-secret-key)
+      - [O que é SECRET\_KEY?](#o-que-é-secret_key)
+      - [O que NÃO fazer com SECRET\_KEY:](#o-que-não-fazer-com-secret_key)
+      - [Como fazer corretamente?](#como-fazer-corretamente)
+      - [Onde guardar a SECRET\_KEY?](#onde-guardar-a-secret_key)
+    - [A Signature](#a-signature)
+  - [Exemplo visual](#exemplo-visual)
+    - [Componentes do JWT](#componentes-do-jwt)
+    - [Etapas: passo a passo](#etapas-passo-a-passo)
+  - [Por que isso é seguro?](#por-que-isso-é-seguro)
+
+
+---
+
+## Introdução
+JSON Web Token (JWT) é um padrão aberto (RFC 7519) que define uma forma compacta e segura de transmitir informações entre partes como um objeto JSON. Essas informações podem ser verificadas e confiáveis porque são assinadas digitalmente.
 
 ---
 
@@ -34,6 +64,8 @@ Você pode usar JWT para trocar dados entre sistemas diferentes. O JWT pode ser 
 * Você sabe que ninguém alterou o contrato porque tem a assinatura digital
 * Isso é como um JWT: ele carrega dados e é assinado
 
+---
+
 ## Exemplo com Código: Gerar um JWT em Python
 <details>
 <sumary>Ver código</sumary>
@@ -65,6 +97,8 @@ print(token)
 </details>
 
 Agora vamos para explicação: Com o JWT importado, tudo parece mágica, mas tem muita lógica por trás, vamos destrinchar juntos!
+
+---
 
 ## Desmontando o JWT
 ```python 
@@ -196,6 +230,8 @@ Ou seja:
   * E aí a assinatura é criada com a chave secreta, usando o algoritmo HS256
 > Essa assinatura impede que alguém altere o conteúdo sem invalidar o token!
 
+---
+
 ## Exemplo visual
 ### Componentes do JWT
 Digamos que os dados fiquem assim:
@@ -230,6 +266,8 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9hb3p
   4. Gerar o `HMAC-SHA256` dessa string usando a `SECRET_KEY` → isso é a *signature binária*
   5. Codificar a *signature* com `Base64Url`
   6. Juntar tudo → `header.payload.signature`
+
+---
 
 ## Por que isso é seguro?
 - Porque qualquer alteração no `header` ou `payload` muda a `signature`. Se alguém tentar modificar o token, a assinatura não vai bater quando o servidor verificar, e o token será rejeitado.
