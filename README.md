@@ -2,8 +2,9 @@
 ![JWT Logo](https://jwt.io/img/logo-asset.svg)
 
 ---
-
+# Índice
 - [JSON Web Token](#json-web-token)
+- [Índice](#índice)
   - [Introdução](#introdução)
   - [O que é um JWT?](#o-que-é-um-jwt)
   - [Quando usar JWT?](#quando-usar-jwt)
