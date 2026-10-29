@@ -1,8 +1,12 @@
 import jwt
 import datetime
 import time
+import secrets
 
 SECRET_KEY = "segredo-super-seguro"
+
+SECRET_KEY = secrets.token_urlsafe(32)
+print(f"Chave secreta gerada: {SECRET_KEY}")
 
 tokens = []
 
